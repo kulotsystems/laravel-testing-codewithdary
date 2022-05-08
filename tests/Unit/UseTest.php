@@ -74,6 +74,31 @@ class UseTest extends TestCase
         ]);
 
         $response->assertRedirect('/home');
+    }
 
+
+    /**
+     * Test database table has record
+     *
+     * @return void
+     */
+    public function test_database_has_record()
+    {
+        $this->assertDatabaseHas('users', [
+            'name' => 'Dary'
+        ]);
+    }
+
+
+    /**
+     * Test database table missing record
+     *
+     * @return void
+     */
+    public function test_database_missing_record()
+    {
+        $this->assertDatabaseMissing('users', [
+            'name' => 'Dary'
+        ]);
     }
 }

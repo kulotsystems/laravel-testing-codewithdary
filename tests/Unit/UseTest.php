@@ -45,7 +45,7 @@ class UseTest extends TestCase
      *
      * @return void
      */
-    public function test_delete_user()
+    public function test_deletes_user()
     {
         $user = User::factory()->count(1)->make();
 
@@ -56,5 +56,24 @@ class UseTest extends TestCase
         }
 
         $this->assertTrue(true);
+    }
+
+
+    /**
+     * Test register route
+     *
+     * @return void
+     */
+    public function test_stores_new_users()
+    {
+        $response = $this->post('/register', [
+            'name'     => 'Dary',
+            'email'    => 'dary@gmail.com',
+            'password' => 'dary1234',
+            'password_confirmation' => 'dary1234'
+        ]);
+
+        $response->assertRedirect('/home');
+
     }
 }
